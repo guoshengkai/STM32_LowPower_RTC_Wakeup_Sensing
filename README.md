@@ -8,7 +8,19 @@ restores the system clock and re-initializes the ADC before performing a 3-chann
 During the ADC/DMA acquisition, the CPU enters Sleep mode using WFI, allowing DMA to continue transferring data while minimizing unnecessary
 CPU activity. Once the DMA transfer is completed, the MCU wakes through the DMA interrupt, reorganizes the interleaved ADC buffer into individual
 channel arrays, and proceeds to data processing or UART transmission.
+
+## Experimental Power Measurement
+The power-saving strategy was experimentally validated using current measurements of the STM32 sensing node.
+The measurement captures two operating states within a complete sensing cycle:
+
+| Operating State | MCU Current | Function |
+|  STOP 2         | ~0 mA       | Periodic waiting with RTC wake-up |
+| Sleep + ADC/DMA | ~7 mA       | Burst sensor acquisition with CPU sleeping |
+
+During STOP 2, the MCU remains in a deep low-power state while the RTC provides the wake-up source. During ADC/DMA acquisition, the CPU enters
+Sleep mode using WFI while DMA continues transferring ADC samples, reducing unnecessary CPU activity.
 <img width="490" height="394" alt="图片" src="https://github.com/user-attachments/assets/a8d6bcc3-d374-4ad4-8e6b-fce1e21daa3e" />
+Figure, Power Consumption During Low-Power Sensing Cycle
 
                     PERIODIC LOW-POWER SENSING
                               │
