@@ -20,6 +20,7 @@ The measurement captures two operating states within a complete sensing cycle:
 During STOP 2, the MCU remains in a deep low-power state while the RTC provides the wake-up source. During ADC/DMA acquisition, the CPU enters
 Sleep mode using WFI while DMA continues transferring ADC samples, reducing unnecessary CPU activity.
 <img width="490" height="394" alt="图片" src="https://github.com/user-attachments/assets/a8d6bcc3-d374-4ad4-8e6b-fce1e21daa3e" />
+
 Figure, Power Consumption During Low-Power Sensing Cycle
 
                     PERIODIC LOW-POWER SENSING
